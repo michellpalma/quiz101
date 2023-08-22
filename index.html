@@ -31,7 +31,7 @@ un resultado según se orienta en la imagen adjunta.
         <p>Altura    <input id="height" size=1/></p>
         <p>Vector traslación    <input id="vt" size=8/></p>
 
-        <p><button id = "btn_tr" onclick = "traslacionPiramide(vertices(ba, al), vt)">Ejecutar traslación</button></p>
+        <p><button id = "btn_tr" onclick = "traslacionPiramide(vertices(width, height), vt)">Ejecutar traslación</button></p>
        
         <p>Vertices posición inicial    <input id="vert_ini" size=50/></p>
         <p>Vertices posición final      <input id="vert_end" size=50/></p>
@@ -42,6 +42,12 @@ un resultado según se orienta en la imagen adjunta.
         ba = document.getElementById('width').value;
         
 
+        function str2num(str)
+        {
+            Number(str)
+
+        }
+        
         function strArr2num(strarr)
         {
             arrs = strarr.split(',');     
@@ -56,9 +62,9 @@ un resultado según se orienta en la imagen adjunta.
 
         function vertices(lado, altura) 
         {
-            strArr2num(lado)
-            strArr2num(base)
-            mitad = lado/2
+            lado=str2num(lado)
+            altura=str2num(altura)
+            mitad = (lado/2)
             return [[0, 0, 0], [lado, 0, 0],[lado, 0, lado],[0, 0, lado],[mitad, altura, mitad] ];
         }
 
@@ -72,12 +78,10 @@ un resultado según se orienta en la imagen adjunta.
             
             var avt = document.getElementById('vt').value;
             
-
-            
             aon = matrVert
             atn = strArr2num(avt)
             
-            document.getElementById('vert_ini').value = vertices(la, ba)
+            document.getElementById('vert_ini').value = matrVert
             document.getElementById('vert_end').value = sum(aon, atn)
 
         }
