@@ -1,12 +1,10 @@
 <!-- 
-
 Asuma una pirámide recta de base cuadrada, ubicada de tal forma que dos de los lados de su base
 coinciden con los ejes X y Z.
 Completar el siguiente codigo de programa javascript incrustado en código html para presentar
 un resultado según se orienta en la imagen adjunta.
 
     Debe utilizar (completando previamente su contenido) las funciones referidas a continuación:
-    
     // Debe retornar un arreglo de 5 arreglos (arreglo de vertices que conforman la pirámide)
     // en otras paalabras una matriz de 5 filas por 3 columnas
     function vertices(lado, altura) {
@@ -32,19 +30,23 @@ un resultado según se orienta en la imagen adjunta.
         <p>Lado base <input id="width" size=1/></p>
         <p>Altura    <input id="height" size=1/></p>
         <p>Vector traslación    <input id="vt" size=8/></p>
-        
-        <p><button id = "btn_tr" onclick = "traslacion()">Ejecutar traslación</button></p>
+
+        <p><button id = "btn_tr" onclick = "traslacionPiramide(vertices(ba, al), vt)">Ejecutar traslación</button></p>
        
         <p>Vertices posición inicial    <input id="vert_ini" size=50/></p>
         <p>Vertices posición final      <input id="vert_end" size=50/></p>
+    
     </body>
     <script>
+        al = document.getElementById('height').value;
+        ba = document.getElementById('width').value;
+        
 
-        function strArr2num(strarr, lim)
+        function strArr2num(strarr)
         {
-            arrs = strarr.split(lim);     //Divide ao por comas
-            arrn = [];   //crea array vacio
-            arrs.forEach(elem =>  //convertir texto a numero
+            arrs = strarr.split(',');     
+            arrn = [];   
+            arrs.forEach(elem =>  
             {
                 arrn.push(Number(elem))
             });
@@ -54,7 +56,10 @@ un resultado según se orienta en la imagen adjunta.
 
         function vertices(lado, altura) 
         {
-        return [[0, 0, 0], [lado, 0, 0],[lado, 0, lado],[0, 0, lado],[(lado/2), altura, (lado/2)] ];
+            strArr2num(lado)
+            strArr2num(base)
+            mitad = lado/2
+            return [[0, 0, 0], [lado, 0, 0],[lado, 0, lado],[0, 0, lado],[mitad, altura, mitad] ];
         }
 
         function sum (array1, array2)
@@ -62,15 +67,17 @@ un resultado según se orienta en la imagen adjunta.
             return array1.map(function (num,idx){return num + array2[idx];})
         }
         
-        function traslacion()
+        function traslacionPiramide(matrVert, vt)
         {
-            //leer datos de vo
-            var ao = document.getElementById('vo').value;
-            //aon = strArr2num(ao, ',')
-            aon = strArr2num(vertices('width','height'), ',')
-            atn = strArr2num('vt', ',')
             
-            document.getElementById('vert_ini').value = vertices('width','height')
+            var avt = document.getElementById('vt').value;
+            
+
+            
+            aon = matrVert
+            atn = strArr2num(avt)
+            
+            document.getElementById('vert_ini').value = vertices(la, ba)
             document.getElementById('vert_end').value = sum(aon, atn)
 
         }
